@@ -25,7 +25,9 @@ const PASSWORD = encodeURIComponent('ID8rJmDV1Zve78ag');
 
 const url = `mongodb://${DB_USER}:${PASSWORD}@cluster0-shard-00-00.ixalj.mongodb.net:27017,cluster0-shard-00-01.ixalj.mongodb.net:27017,cluster0-shard-00-02.ixalj.mongodb.net:27017/local_library?ssl=true&replicaSet=atlas-ksxrsb-shard-0&authSource=admin&retryWrites=true&w=majority`;
 
-mongoose.connect(url, 
+let mongoDB = process.env.MONGODB_URI || url;
+
+mongoose.connect(mongoDB, 
   { 
     useNewUrlParser: true ,
     useUnifiedTopology: true,
